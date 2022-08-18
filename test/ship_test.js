@@ -26,7 +26,7 @@ describe('checkForShip', function (){
             ]
         };
 
-        expect(checkForShip(player, [0, 0])).to.be.true;
+        expect(checkForShip(player, [0, 0])).to.deep.equal(player.ships[0]);
     });
 
     it('should handle ships located at one or more coordinates', function (){
@@ -83,21 +83,17 @@ describe('damageShip', function (){
 describe('fire', function(){
     var fire = require('../game_logic/ship_methods').fire;
 
-    it('should fire at an opponents ship', function(){
-        player = {
+    it('should should recored damage on the given players ship', function(){
+        var player = {
             ships: [
                 {
                     locations: [[0, 0]],
+                    damage: [],
                 }
             ]
         };
-        var ship = {
-            locations: [[0, 0]],
-            damage: []
-        };
-        if (checkForShip(player, [0, 1]) == true){
-            damageShip(ship, [0, 0]);
-            expect(ship.damage).to.not.be.empty;
-        };
+        fire(player, [0, 0]);
+        expect(player.ships[0].damage[0]).to.deep.equal([0, 0]);
+        
     });
 });
