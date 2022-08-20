@@ -1,3 +1,6 @@
+//@param player - a player object
+//@param coordinates - coordinates 
+
 function checkForShip(player, coordinates){
     var shipPresent, ship;
 
